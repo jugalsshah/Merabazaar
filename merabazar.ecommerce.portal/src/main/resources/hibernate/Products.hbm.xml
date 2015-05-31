@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 31, 2015 3:00:16 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.learnlogic.ecommerce.merabazar.model.Products" table="products" catalog="merabazar">
+        <id name="productId" type="long">
+            <column name="Product_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="category" class="com.learnlogic.ecommerce.merabazar.model.Category" fetch="select">
+            <column name="cat_id" />
+        </many-to-one>
+        <many-to-one name="suppliers" class="com.learnlogic.ecommerce.merabazar.model.Suppliers" fetch="select">
+            <column name="SupplierId" />
+        </many-to-one>
+        <property name="productName" type="string">
+            <column name="Product_name" length="40" not-null="true" />
+        </property>
+        <property name="productSku" type="string">
+            <column name="Product_sku" length="45" />
+        </property>
+        <property name="productPrice" type="java.lang.Float">
+            <column name="Product_price" precision="12" scale="0" />
+        </property>
+        <property name="productDescription" type="string">
+            <column name="Product_description" length="200" />
+        </property>
+        <property name="productImage" type="binary">
+            <column name="Product_image" />
+        </property>
+        <property name="productLongDesc" type="string">
+            <column name="Product_longDesc" length="65535" />
+        </property>
+        <property name="productSize" type="string">
+            <column name="Product_size" length="45" />
+        </property>
+        <property name="productColor" type="string">
+            <column name="Product_color" length="45" />
+        </property>
+        <property name="productAvailableSize" type="string">
+            <column name="Product_available_size" length="45" />
+        </property>
+        <property name="productAvailableColor" type="string">
+            <column name="Product_available_color" length="45" />
+        </property>
+        <property name="productDiscount" type="string">
+            <column name="Product_discount" length="45" />
+        </property>
+        <property name="note" type="string">
+            <column name="Note" length="45" />
+        </property>
+        <set name="supplierses" table="suppliers" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Productsid" />
+            </key>
+            <one-to-many class="com.learnlogic.ecommerce.merabazar.model.Suppliers" />
+        </set>
+        <set name="shoppingcarts" table="shoppingcart" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="productid" />
+            </key>
+            <one-to-many class="com.learnlogic.ecommerce.merabazar.model.Shoppingcart" />
+        </set>
+        <set name="categories" table="category" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="prodid" />
+            </key>
+            <one-to-many class="com.learnlogic.ecommerce.merabazar.model.Category" />
+        </set>
+        <set name="orderDetails" table="order_detail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="detail_product_id" not-null="true" />
+            </key>
+            <one-to-many class="com.learnlogic.ecommerce.merabazar.model.OrderDetail" />
+        </set>
+    </class>
+</hibernate-mapping>

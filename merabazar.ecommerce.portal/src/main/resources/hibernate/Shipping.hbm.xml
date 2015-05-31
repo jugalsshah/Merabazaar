@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 31, 2015 3:00:16 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.learnlogic.ecommerce.merabazar.model.Shipping" table="shipping" catalog="merabazar">
+        <id name="shippingId" type="long">
+            <column name="Shipping_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="shippingCompany" type="string">
+            <column name="Shipping_company" length="45" />
+        </property>
+        <property name="shuppingDetail" type="string">
+            <column name="Shupping_detail" length="100" />
+        </property>
+        <set name="orderses" table="orders" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Ship_Id" />
+            </key>
+            <one-to-many class="com.learnlogic.ecommerce.merabazar.model.Orders" />
+        </set>
+    </class>
+</hibernate-mapping>

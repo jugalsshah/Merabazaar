@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 31, 2015 3:00:16 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.learnlogic.ecommerce.merabazar.model.OrderDetail" table="order_detail" catalog="merabazar">
+        <id name="detailId" type="long">
+            <column name="detail_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="orders" class="com.learnlogic.ecommerce.merabazar.model.Orders" fetch="select">
+            <column name="detail_order_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="products" class="com.learnlogic.ecommerce.merabazar.model.Products" fetch="select">
+            <column name="detail_product_id" not-null="true" />
+        </many-to-one>
+        <property name="detailName" type="string">
+            <column name="detail_name" length="200" />
+        </property>
+        <property name="detailPrice" type="string">
+            <column name="detail_price" length="45" />
+        </property>
+        <property name="detailSkU" type="string">
+            <column name="detail_skU" length="45" />
+        </property>
+        <property name="detailQuantity" type="string">
+            <column name="detail_quantity" length="45" />
+        </property>
+        <property name="discount" type="string">
+            <column name="discount" length="45" />
+        </property>
+        <property name="detailOrderNumber" type="string">
+            <column name="detail_order_number" length="45" />
+        </property>
+        <set name="shoppingcarts" table="shoppingcart" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="detailid" />
+            </key>
+            <one-to-many class="com.learnlogic.ecommerce.merabazar.model.Shoppingcart" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 31, 2015 3:00:16 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.learnlogic.ecommerce.merabazar.model.Users" table="users" catalog="merabazar">
+        <id name="userId" type="long">
+            <column name="UserId" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="orders" class="com.learnlogic.ecommerce.merabazar.model.Orders" fetch="select">
+            <column name="User_order" />
+        </many-to-one>
+        <property name="userFname" type="string">
+            <column name="User_fname" length="45" not-null="true" />
+        </property>
+        <property name="userLname" type="string">
+            <column name="User_lname" length="45" not-null="true" />
+        </property>
+        <property name="userPhone" type="string">
+            <column name="User_phone" length="20" />
+        </property>
+        <property name="userEmail" type="string">
+            <column name="User_email" length="45" />
+        </property>
+        <property name="userPassword" type="string">
+            <column name="User_password" length="45" />
+        </property>
+        <property name="userCity" type="string">
+            <column name="User_city" length="45" />
+        </property>
+        <property name="userState" type="string">
+            <column name="User_state" length="45" />
+        </property>
+        <property name="userZipcode" type="string">
+            <column name="User_zipcode" length="45" />
+        </property>
+        <property name="userRegistrationdate" type="timestamp">
+            <column name="User_registrationdate" length="19" />
+        </property>
+        <property name="userEmailverifiction" type="java.lang.Boolean">
+            <column name="User_emailverifiction" />
+        </property>
+        <property name="userVerificationcode" type="string">
+            <column name="User_verificationcode" length="45" />
+        </property>
+        <property name="userIp" type="string">
+            <column name="User_ip" length="45" />
+        </property>
+        <property name="userCountry" type="string">
+            <column name="User_country" length="45" />
+        </property>
+        <property name="userAddress1" type="string">
+            <column name="User_Address1" length="45" />
+        </property>
+        <property name="userAddress2" type="string">
+            <column name="User_Address2" length="45" />
+        </property>
+        <property name="userCreditcard" type="string">
+            <column name="User_creditcard" length="45" />
+        </property>
+        <property name="userCardType" type="string">
+            <column name="User_cardType" length="45" />
+        </property>
+        <property name="userBillingaddress1" type="string">
+            <column name="User_billingaddress1" length="45" />
+        </property>
+        <property name="userBillingaddress2" type="string">
+            <column name="User_billingaddress2" length="45" />
+        </property>
+        <property name="userShippingaddress1" type="string">
+            <column name="User_shippingaddress1" length="45" />
+        </property>
+        <property name="userShippingaddress2" type="string">
+            <column name="User_shippingaddress2" length="45" />
+        </property>
+        <property name="userCredmonth" type="timestamp">
+            <column name="User_credmonth" length="19" />
+        </property>
+        <property name="userCredexp" type="timestamp">
+            <column name="User_credexp" length="19" />
+        </property>
+        <property name="userImage" type="binary">
+            <column name="User_image" />
+        </property>
+        <set name="orderses" table="orders" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Usersid" not-null="true" />
+            </key>
+            <one-to-many class="com.learnlogic.ecommerce.merabazar.model.Orders" />
+        </set>
+        <set name="shoppingcarts" table="shoppingcart" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="userid" />
+            </key>
+            <one-to-many class="com.learnlogic.ecommerce.merabazar.model.Shoppingcart" />
+        </set>
+    </class>
+</hibernate-mapping>

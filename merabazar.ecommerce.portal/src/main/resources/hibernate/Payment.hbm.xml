@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 31, 2015 3:00:16 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.learnlogic.ecommerce.merabazar.model.Payment" table="payment" catalog="merabazar">
+        <id name="paymentId" type="long">
+            <column name="paymentId" />
+            <generator class="assigned" />
+        </id>
+        <property name="paymentType" type="string">
+            <column name="payment_type" length="45" />
+        </property>
+        <property name="allowed" type="string">
+            <column name="allowed" length="11" />
+        </property>
+        <set name="orderses" table="orders" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Payment_id" not-null="true" />
+            </key>
+            <one-to-many class="com.learnlogic.ecommerce.merabazar.model.Orders" />
+        </set>
+    </class>
+</hibernate-mapping>

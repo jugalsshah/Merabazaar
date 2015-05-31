@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 31, 2015 3:00:16 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.learnlogic.ecommerce.merabazar.model.Orders" table="orders" catalog="merabazar">
+        <id name="orderId" type="long">
+            <column name="Order_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="users" class="com.learnlogic.ecommerce.merabazar.model.Users" fetch="select">
+            <column name="Usersid" not-null="true" />
+        </many-to-one>
+        <many-to-one name="shipping" class="com.learnlogic.ecommerce.merabazar.model.Shipping" fetch="select">
+            <column name="Ship_Id" />
+        </many-to-one>
+        <many-to-one name="payment" class="com.learnlogic.ecommerce.merabazar.model.Payment" fetch="select">
+            <column name="Payment_id" not-null="true" />
+        </many-to-one>
+        <property name="ordernumber" type="long">
+            <column name="Ordernumber" not-null="true" />
+        </property>
+        <property name="orderDate" type="timestamp">
+            <column name="Order_date" length="19" />
+        </property>
+        <property name="shipDate" type="timestamp">
+            <column name="Ship_date" length="19" />
+        </property>
+        <property name="orderAmount" type="string">
+            <column name="Order_amount" length="45" />
+        </property>
+        <property name="orderTrackingnumber" type="string">
+            <column name="Order_trackingnumber" length="45" />
+        </property>
+        <property name="orderTax" type="java.lang.Long">
+            <column name="Order_Tax" />
+        </property>
+        <property name="orderShipaddress1" type="string">
+            <column name="Order_Shipaddress1" length="45" />
+        </property>
+        <property name="orderShipaddress2" type="string">
+            <column name="Order_shipaddress2" length="45" />
+        </property>
+        <property name="orderCity" type="string">
+            <column name="Order_city" length="45" />
+        </property>
+        <property name="orderState" type="string">
+            <column name="Order_state" length="45" />
+        </property>
+        <property name="orderZip" type="string">
+            <column name="Order_Zip" length="45" />
+        </property>
+        <property name="orderPaymentDate" type="timestamp">
+            <column name="Order_payment_Date" length="19" />
+        </property>
+        <set name="userses" table="users" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="User_order" />
+            </key>
+            <one-to-many class="com.learnlogic.ecommerce.merabazar.model.Users" />
+        </set>
+        <set name="orderDetails" table="order_detail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="detail_order_id" not-null="true" />
+            </key>
+            <one-to-many class="com.learnlogic.ecommerce.merabazar.model.OrderDetail" />
+        </set>
+    </class>
+</hibernate-mapping>
