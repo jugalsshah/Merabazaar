@@ -23,12 +23,17 @@ import com.learnlogic.ecommerce.merabazar.model.Products;
 @Table(name = "category", catalog = "merabazar")
 public class Category implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private long categoryId;
 	private Products products;
 	private String categoryName;
 	private String categoryDesc;
 	private byte[] categoryImage;
 	private String active;
+	@SuppressWarnings("rawtypes")
 	private Set productses = new HashSet(0);
 
 	public Category() {
